@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Cadastro de título</title>
+<link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
@@ -48,8 +49,8 @@
 					<label for="status" class="col-sm-2 control-label">Status</label>
 					<div class="col-sm-2">
 						<select class="form-control" name="status">
-							<option th:each="status : ${todosStatusTitulo}" th:value="${status}"
-								th:text="${status.descricao}"></option>
+							<option th:each="status : ${todosStatusTitulo}"
+								th:value="${status}" th:text="${status.descricao}"></option>
 						</select>
 					</div>
 				</div>
@@ -65,7 +66,7 @@
 	</form>
 
 
-
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

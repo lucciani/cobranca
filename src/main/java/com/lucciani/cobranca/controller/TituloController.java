@@ -35,6 +35,11 @@ public class TituloController {
 		mv.addObject("mensagem", "Titulo salvo com sucesso!");
 		return mv;
 	}
+	
+	@RequestMapping
+	public String pesquisar() {
+		return "pesquisa-titulos";
+	}
 
 	@ModelAttribute("todosStatusTitulo")
 	public List<StatusTitulo> todosStatusTitulo() {
