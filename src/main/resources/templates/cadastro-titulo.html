@@ -1,21 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout-padrao">
 <head>
-<meta charset="UTF-8" />
-<title>Cadastro de tÃ­tulo</title>
-<link rel="shortcut icon" href="https://media.flaticon.com/dist/min/img/favicon.ico">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<title>Cadastro de título</title>
 </head>
-<body>
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<a class="navbar-brand" href="#"> <img src="/img/logo.png"
-			width="30" height="30" alt="">
-		</a>
-	</nav>
-
-
+<section layout:fragment="conteudo">
 	<form class="form-horizontal" method="POST" action="/titulos">
 		<div class="alert alert-success" role="alert"
 			th:if="${!#strings.isEmpty(mensagem)}">
@@ -23,7 +13,12 @@
 		</div>
 
 		<div class="panel panel-primary">
-			<div class="panel-heading">Novo Cliente</div>
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title aw-titulo-panel">Pesquisa de titulos</h1>
+					<a class="btn btl-link aw-link-panel" href="/titulos">Voltar para pesquisa</a>
+				</div>
+			</div>
 			<div class="panel-body">
 				<div class="form-group">
 					<label for="nome" class="col-sm-2 control-label">Nome do
@@ -65,8 +60,5 @@
 
 	</form>
 
-
-	<script src="/js/jquery-2.1.4.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-</body>
+</section>
 </html>

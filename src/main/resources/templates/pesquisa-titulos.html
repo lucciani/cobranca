@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout-padrao">
 <head>
 <meta charset="UTF-8" />
 <title>Pesquisa de título</title>
-<link rel="shortcut icon"
-	href="https://media.flaticon.com/dist/min/img/favicon.ico">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
-<body>
 
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<a class="navbar-brand" href="#"> <img src="/img/logo.png"
-			width="30" height="30" alt="">
-		</a>
-	</nav>
-
+<section layout:fragment="conteudo">
 	<div class="panel panel-primary">
-		<div class="panel-heading">Pesquisa de titulos</div>
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title aw-titulo-panel">Pesquisa de titulos</h1>
+				<a class="btn btl-link aw-link-panel" href="/titulos/novo">Novo
+					título</a>
+			</div>
+		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-striped">
 				<thead>
@@ -34,8 +31,20 @@
 				</thead>
 				<!-- fim cabeçalho -->
 				<tbody>
+					<tr th:each="titulo : ${titulos}">
+						<td class="text-center" th:text="${titulo.codigo}"></td>
+						<td th:text="${titulo.nome}"></td>
+						<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+						<td class="text-right" th:text="${{titulo.valor}}"></td>
+						<td class="text-center" >
+							<span class="label" th:text="${titulo.status.descricao}"
+							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
+						</td>
+						<td class="text-center"></td>
+					</tr>
 					<tr>
-					<td colspan="6">Nenhum titulo foi encontrado</td>
+						<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum
+							título foi encontrado</td>
 					</tr>
 				</tbody>
 				<!-- fim body -->
@@ -44,8 +53,5 @@
 			<!-- Fim da tabela -->
 		</div>
 	</div>
-
-	<script src="/js/jquery-2.1.4.min.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-</body>
+</section>
 </html>

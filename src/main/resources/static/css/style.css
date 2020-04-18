@@ -12,3 +12,14 @@
 	margin-left: 80px;
 	margin-right: 80px;
 }
+
+.aw-link-panel{
+	float: right;
+	color: #fff;
+	padding: 0px;
+}
+
+.aw-titulo-panel{
+	float: left;
+	padding-top: 2px;
+}

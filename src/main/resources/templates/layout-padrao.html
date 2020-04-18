@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<title>Cobrança</title>
+<link rel="shortcut icon"
+	href="https://media.flaticon.com/dist/min/img/favicon.ico">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+	<header layout:insert="cabecalho"></header>
+
+	<section layout:fragment="conteudo">
+		<p>Conteudo Principal</p>
+	</section>
+
+	<script src="/js/jquery-2.1.4.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

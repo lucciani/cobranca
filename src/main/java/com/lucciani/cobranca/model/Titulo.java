@@ -74,6 +74,11 @@ public class Titulo {
 	public void setStatus(StatusTitulo status) {
 		this.status = status;
 	}
+	
+	//Metodo para validar o status pendente do titulo
+	public boolean isPendente() {
+		return StatusTitulo.PENDENTE.equals(this.status);
+	}
 
 	@Override
 	public int hashCode() {

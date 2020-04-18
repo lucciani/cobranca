@@ -23,7 +23,7 @@ public class TituloController {
 
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		ModelAndView mv = new ModelAndView("cadastro-titulo");
 		return mv;
 	}
 
@@ -31,14 +31,17 @@ public class TituloController {
 	public ModelAndView salvar(Titulo titulo) {
 		titulosRepository.save(titulo);
 
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		ModelAndView mv = new ModelAndView("cadastro-titulo");
 		mv.addObject("mensagem", "Titulo salvo com sucesso!");
 		return mv;
 	}
-	
+
 	@RequestMapping
-	public String pesquisar() {
-		return "pesquisa-titulos";
+	public ModelAndView pesquisar() {
+		List<Titulo> todosTitulos = titulosRepository.findAll();
+		ModelAndView mv = new ModelAndView("pesquisa-titulos");
+		mv.addObject("titulos", todosTitulos);
+		return mv;
 	}
 
 	@ModelAttribute("todosStatusTitulo")
