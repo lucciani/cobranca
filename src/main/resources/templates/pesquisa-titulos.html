@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout-padrao">
 <head>
@@ -8,13 +9,16 @@
 </head>
 
 <section layout:fragment="conteudo">
+	<div layout:insert="mensagem-geral"></div>
+
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<div class="clearfix">
 				<h1 class="panel-title aw-titulo-panel">Pesquisa de titulos</h1>
 				<a class="btn btl-link aw-link-panel" href="/titulos/novo">Novo
 					título</a>
-			</div><!-- Fim Heading Panel -->
+			</div>
+			<!-- Fim Heading Panel -->
 		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-striped">
@@ -30,26 +34,43 @@
 					</tr>
 				</thead>
 				<!-- fim cabeçalho -->
+
 				<tbody>
 					<tr th:each="titulo : ${titulos}">
 						<td class="text-center" th:text="${titulo.codigo}"></td>
 						<td th:text="${titulo.nome}"></td>
 						<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
 						<td class="text-right" th:text="${{titulo.valor}}"></td>
-						<td class="text-center" >
-							<span class="label" th:text="${titulo.status.descricao}"
+						<td class="text-center"><span class="label"
+							th:text="${titulo.status.descricao}"
 							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
 						</td>
-						<td class="text-center"></td>
+						<td class="text-center">
+						<a class="btn btn-link btn-xs"
+							th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+							title="Editar" rel="tooltip" data-placement="top"> <span
+								class="glyphicon glyphicon-pencil"></span>
+						</a> 
+						<a class="btn btn-link btn-xs" data-toggle="modal"
+							data-target="#confirmacaoExclusaoModal"
+							th:attr="data-codigo=${titulo.codigo}, data-nome=${titulo.nome}"
+							title="Excluir" rel="tooltip" data-placement="top">
+								<span class="glyphicon glyphicon-remove"></span>
+						</a></td>
 					</tr>
 					<tr>
 						<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum
 							título foi encontrado</td>
 					</tr>
-				</tbody><!-- fim tbody -->
+				</tbody>
+				<!-- fim tbody -->
 			</table>
 			<!-- Fim da tabela -->
-		</div><!-- Fim do body Panel -->
+		</div>
+		<!-- Fim do body Panel -->
+
+		<div layout:insert="dialogo-exclusao-lista"></div>
+
 	</div>
 </section>
 </html>
