@@ -1,9 +1,12 @@
 package com.lucciani.cobranca.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.lucciani.cobranca.model.StatusTitulo;
 import com.lucciani.cobranca.model.Titulo;
 import com.lucciani.cobranca.repository.TitulosRepository;
 
@@ -24,6 +27,16 @@ public class CadastroTituloService {
 	
 	public void excluir(Long codigo) {
 		tituloRepository.deleteById(codigo);
+	}
+
+
+	public String receber(Long codigo) {
+		Optional<Titulo> titulo = tituloRepository.findById(codigo);
+		titulo.get().setStatus(StatusTitulo.RECEBIDO);
+		tituloRepository.save(titulo.get());
+		
+		return StatusTitulo.RECEBIDO.getDescricao();
+		
 	}
 
 }

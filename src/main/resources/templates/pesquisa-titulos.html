@@ -41,22 +41,31 @@
 						<td th:text="${titulo.nome}"></td>
 						<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
 						<td class="text-right" th:text="${{titulo.valor}}"></td>
-						<td class="text-center"><span class="label"
-							th:text="${titulo.status.descricao}"
-							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"></span>
+						<td class="text-center" th:attr="data-role=${titulo.codigo}">
+							<span class="label"
+								th:text="${titulo.status.descricao}"
+								th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}">
+							</span>
 						</td>
 						<td class="text-center">
-						<a class="btn btn-link btn-xs"
-							th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
-							title="Editar" rel="tooltip" data-placement="top"> <span
-								class="glyphicon glyphicon-pencil"></span>
-						</a> 
-						<a class="btn btn-link btn-xs" data-toggle="modal"
-							data-target="#confirmacaoExclusaoModal"
-							th:attr="data-codigo=${titulo.codigo}, data-nome=${titulo.nome}"
-							title="Excluir" rel="tooltip" data-placement="top">
-								<span class="glyphicon glyphicon-remove"></span>
-						</a></td>
+							<a class="btn btn-link btn-xs"
+								th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+								title="Editar" rel="tooltip" data-placement="top"> <span
+									class="glyphicon glyphicon-pencil"></span>
+							</a> 
+							<a class="btn btn-link btn-xs" data-toggle="modal"
+								data-target="#confirmacaoExclusaoModal"
+								th:attr="data-codigo=${titulo.codigo}, data-nome=${titulo.nome}"
+								title="Excluir" rel="tooltip" data-placement="top">
+									<span class="glyphicon glyphicon-remove"></span>
+							</a>
+							<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
+								title="Receber" rel="tooltip" data-placement="top"
+								th:attr="data-codigo=${titulo.codigo}"
+								th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+									<span class="glyphicon glyphicon-check" ></span>
+							</a>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum
