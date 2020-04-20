@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lucciani.cobranca.model.StatusTitulo;
 import com.lucciani.cobranca.model.Titulo;
 import com.lucciani.cobranca.repository.TitulosRepository;
+import com.lucciani.cobranca.services.CadastroTituloService;
 
 @Controller
 @RequestMapping("/titulos")
@@ -31,6 +32,10 @@ public class TituloController {
 
 	@Autowired
 	private TitulosRepository titulosRepository;
+	
+	@Autowired
+	private CadastroTituloService cadastroTitulosService;
+	
 
 	/*
 	 * @mv: retorna um objeto ModelAndView cadastro-titulo
@@ -61,10 +66,14 @@ public class TituloController {
 			return CADASTRO_VIEW;
 		}
 
-		titulosRepository.save(titulo);
-
-		attributes.addFlashAttribute("mensagem", "Titulo salvo com sucesso!");
-		return "redirect:/titulos/novo";
+		try {
+			cadastroTitulosService.salvar(titulo);
+			attributes.addFlashAttribute("mensagem", "Titulo salvo com sucesso!");
+			return "redirect:/titulos/novo";
+		} catch (IllegalArgumentException e) {
+			erros.rejectValue("dataVencimento", null, e.getMessage());
+			return CADASTRO_VIEW;
+		}
 	}
 
 	/*
@@ -96,7 +105,7 @@ public class TituloController {
 	 */
 	@RequestMapping(value = "/delete/{codigo}", method = RequestMethod.POST)
 	public String excluir(@PathVariable("codigo") Long codigo, RedirectAttributes attributes) {
-		titulosRepository.deleteById(codigo);
+		cadastroTitulosService.excluir(codigo);
 
 		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
 		return "redirect:/titulos";
