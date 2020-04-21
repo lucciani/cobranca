@@ -1,5 +1,6 @@
 package com.lucciani.cobranca.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.lucciani.cobranca.model.StatusTitulo;
 import com.lucciani.cobranca.model.Titulo;
 import com.lucciani.cobranca.repository.TitulosRepository;
+import com.lucciani.cobranca.repository.filter.TituloFilter;
 
 @Service
 public class CadastroTituloService {
@@ -37,6 +39,10 @@ public class CadastroTituloService {
 		
 		return StatusTitulo.RECEBIDO.getDescricao();
 		
+	}
+	
+	public List<Titulo> filtrar(TituloFilter filtro){
+		return tituloRepository.findByNomeContaining(filtro.getNome());
 	}
 
 }

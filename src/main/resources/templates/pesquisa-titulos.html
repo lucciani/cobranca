@@ -21,12 +21,30 @@
 			<!-- Fim Heading Panel -->
 		</div>
 		<div class="panel-body">
+		
+			<form method="get" class="form-horizontal" th:object="${filtro}">
+				<div class="form-group">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input class="form-control" 
+							placeholder="Qual cliente você está procurando?" 
+							autofocus="autofocus" th:field="*{nome}"></input>
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
+		
 			<table class="table table-bordered table-striped">
 				<thead>
 					<!-- Inicio da tabela -->
 					<tr>
 						<th class="text-center col-md-1">#</th>
-						<th>Descrição</th>
+						<th>Clientes</th>
 						<th class="text-center col-md-2">Data Vencimento</th>
 						<th class="text-right col-md-2">Valor</th>
 						<th class="text-center col-md-2">Status</th>

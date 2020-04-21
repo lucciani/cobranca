@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lucciani.cobranca.model.StatusTitulo;
 import com.lucciani.cobranca.model.Titulo;
 import com.lucciani.cobranca.repository.TitulosRepository;
+import com.lucciani.cobranca.repository.filter.TituloFilter;
 import com.lucciani.cobranca.services.CadastroTituloService;
 
 @Controller
@@ -27,12 +28,9 @@ public class TituloController {
 	private static final String CADASTRO_VIEW = "cadastro-titulo";
 
 	/*
-	 * @titulosRepository: Injeta a dependencia do Objeto repository
+	 * @cadastroTitulosService: Injeta a dependencia do Objeto repository
 	 * 
 	 */
-
-	@Autowired
-	private TitulosRepository titulosRepository;
 
 	@Autowired
 	private CadastroTituloService cadastroTitulosService;
@@ -83,8 +81,8 @@ public class TituloController {
 	 */
 
 	@RequestMapping
-	public ModelAndView pesquisar() {
-		List<Titulo> todosTitulos = titulosRepository.findAll();
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filter) {
+		List<Titulo> todosTitulos = cadastroTitulosService.filtrar(filter);
 		ModelAndView mv = new ModelAndView("pesquisa-titulos");
 		mv.addObject("titulos", todosTitulos);
 		return mv;
