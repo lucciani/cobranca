@@ -9,7 +9,7 @@
 <section layout:fragment="conteudo">
 
 	<!-- a Tag th:object busca o objeto no controller para o form fazer o tratamento no html -->
-	<form class="form-horizontal" method="POST" action="/titulos"
+	<form class="form-horizontal" method="POST" th:action="@{/titulos}"
 		th:object="${titulo}">
 
 		<div layout:insert="mensagem-geral"></div>
@@ -19,7 +19,7 @@
 			<div class="panel-heading">
 				<div class="clearfix">
 					<h1 class="panel-title aw-titulo-panel">Novo titulo</h1>
-					<a class="btn btl-link aw-link-panel" href="/titulos">Voltar
+					<a class="btn btl-link aw-link-panel" th:href="@{/titulos}">Voltar
 						para pesquisa</a>
 				</div>
 			</div>

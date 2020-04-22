@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lucciani.cobranca.model.StatusTitulo;
 import com.lucciani.cobranca.model.Titulo;
-import com.lucciani.cobranca.repository.TitulosRepository;
 import com.lucciani.cobranca.repository.filter.TituloFilter;
 import com.lucciani.cobranca.services.CadastroTituloService;
 

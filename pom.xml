@@ -14,7 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>cobranca</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Sistema controle de titulos</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -70,12 +70,26 @@
 	</dependencies>
 
 	<build>
+
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<fork>true</fork>
+					<executable>C:\Program Files\Java\jdk1.8.0_60\bin\javac.exe</executable>
+				</configuration>
+			</plugin>
+
 		</plugins>
+
+
 	</build>
 
 </project>

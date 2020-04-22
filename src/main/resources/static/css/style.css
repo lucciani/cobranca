@@ -1,25 +1,26 @@
+/*Tela grande*/
+@media ( mid-width : 768px) {
+	.panel-primary {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.alert {
+		margin-left: 80px;
+		margin-right: 80px;
+	}
+}
+
 .navbar-brand {
 	padding-top: 12px;
 }
 
-.panel-primary{
-	margin-left: 80px;
-	margin-right: 80px;
-	
-}
-
-.alert {
-	margin-left: 80px;
-	margin-right: 80px;
-}
-
-.aw-link-panel{
+.aw-link-panel {
 	float: right;
 	color: #fff;
 	padding: 0px;
 }
 
-.aw-titulo-panel{
+.aw-titulo-panel {
 	float: left;
 	padding-top: 2px;
 }

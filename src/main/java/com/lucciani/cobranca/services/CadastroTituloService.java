@@ -42,7 +42,8 @@ public class CadastroTituloService {
 	}
 	
 	public List<Titulo> filtrar(TituloFilter filtro){
-		return tituloRepository.findByNomeContaining(filtro.getNome());
+		String nome = filtro.getNome() == null ? " " : filtro.getNome();
+		return tituloRepository.findByNomeContaining(nome);
 	}
 
 }

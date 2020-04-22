@@ -15,7 +15,7 @@
 		<div class="panel-heading">
 			<div class="clearfix">
 				<h1 class="panel-title aw-titulo-panel">Pesquisa de titulos</h1>
-				<a class="btn btl-link aw-link-panel" href="/titulos/novo">Novo
+				<a class="btn btl-link aw-link-panel" th:href="@{/titulos/novo}">Novo
 					título</a>
 			</div>
 			<!-- Fim Heading Panel -->
@@ -39,60 +39,62 @@
 				</div>
 			</form>
 		
-			<table class="table table-bordered table-striped">
-				<thead>
-					<!-- Inicio da tabela -->
-					<tr>
-						<th class="text-center col-md-1">#</th>
-						<th>Clientes</th>
-						<th class="text-center col-md-2">Data Vencimento</th>
-						<th class="text-right col-md-2">Valor</th>
-						<th class="text-center col-md-2">Status</th>
-						<th class="col-md-1">Ação</th>
-					</tr>
-				</thead>
-				<!-- fim cabeçalho -->
-
-				<tbody>
-					<tr th:each="titulo : ${titulos}">
-						<td class="text-center" th:text="${titulo.codigo}"></td>
-						<td th:text="${titulo.nome}"></td>
-						<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
-						<td class="text-right" th:text="${{titulo.valor}}"></td>
-						<td class="text-center" th:attr="data-role=${titulo.codigo}">
-							<span class="label"
-								th:text="${titulo.status.descricao}"
-								th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}">
-							</span>
-						</td>
-						<td class="text-center">
-							<a class="btn btn-link btn-xs"
-								th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
-								title="Editar" rel="tooltip" data-placement="top"> <span
-									class="glyphicon glyphicon-pencil"></span>
-							</a> 
-							<a class="btn btn-link btn-xs" data-toggle="modal"
-								data-target="#confirmacaoExclusaoModal"
-								th:attr="data-codigo=${titulo.codigo}, data-nome=${titulo.nome}"
-								title="Excluir" rel="tooltip" data-placement="top">
-									<span class="glyphicon glyphicon-remove"></span>
-							</a>
-							<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
-								title="Receber" rel="tooltip" data-placement="top"
-								th:attr="data-codigo=${titulo.codigo}"
-								th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
-									<span class="glyphicon glyphicon-check" ></span>
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum
-							título foi encontrado</td>
-					</tr>
-				</tbody>
-				<!-- fim tbody -->
-			</table>
-			<!-- Fim da tabela -->
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<!-- Inicio da tabela -->
+						<tr>
+							<th class="text-center col-md-1">#</th>
+							<th>Clientes</th>
+							<th class="text-center col-md-2">Data Vencimento</th>
+							<th class="text-right col-md-2">Valor</th>
+							<th class="text-center col-md-2">Status</th>
+							<th class="col-md-1">Ação</th>
+						</tr>
+					</thead>
+					<!-- fim cabeçalho -->
+	
+					<tbody>
+						<tr th:each="titulo : ${titulos}">
+							<td class="text-center" th:text="${titulo.codigo}"></td>
+							<td th:text="${titulo.nome}"></td>
+							<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+							<td class="text-right" th:text="${{titulo.valor}}"></td>
+							<td class="text-center" th:attr="data-role=${titulo.codigo}">
+								<span class="label"
+									th:text="${titulo.status.descricao}"
+									th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}">
+								</span>
+							</td>
+							<td class="text-center">
+								<a class="btn btn-link btn-xs"
+									th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
+									title="Editar" rel="tooltip" data-placement="top"> <span
+										class="glyphicon glyphicon-pencil"></span>
+								</a> 
+								<a class="btn btn-link btn-xs" data-toggle="modal"
+									data-target="#confirmacaoExclusaoModal"
+									th:attr="data-codigo=${titulo.codigo}, data-nome=${titulo.nome}"
+									title="Excluir" rel="tooltip" data-placement="top">
+										<span class="glyphicon glyphicon-remove"></span>
+								</a>
+								<a class="btn btn-link btn-xs js-atualizar-status" th:if="${titulo.pendente}"
+									title="Receber" rel="tooltip" data-placement="top"
+									th:attr="data-codigo=${titulo.codigo}"
+									th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+										<span class="glyphicon glyphicon-check" ></span>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum
+								título foi encontrado</td>
+						</tr>
+					</tbody>
+					<!-- fim tbody -->
+				</table>
+				<!-- Fim da tabela -->
+			</div>
 		</div>
 		<!-- Fim do body Panel -->
 
